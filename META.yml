@@ -1,0 +1,14 @@
+name: Kwiki-Users-Remote
+version: 0.01
+abstract: automatically set Kwiki user name from HTTP authentication
+author: Ian Langworth <langworth.com>
+license: perl
+distribution_type: module
+requires:
+  perl: 5.6.1
+  Kwiki: 0.32
+  Kwiki::Users: Kwiki::UserName
+no_index:
+  directory:
+    - inc
+generated_by: Module::Install version 0.35
