@@ -1,36 +1,17 @@
 package Kwiki::Users::Remote;
-use strict;
-use warnings;
-use Kwiki::Users '-Base';
+use Kwiki::Users -Base;
 
-our $VERSION = "0.01";
+our $VERSION = "0.02";
 
-const class_id => 'users';
 const class_title => 'Kwiki users from HTTP authentication';
+const user_class => 'Kwiki::User::Remote';
 
-sub current {
-    return $self->{current} = shift if @_;
-    return $self->{current} if defined $self->{current};
-    $self->{current} = Kwiki::User::Remote->new($self->hub);
-}
-    
 package Kwiki::User::Remote;
-
-# Kwiki::User is in Kwiki/Users.pm, thus it should be already loaded
-our @ISA = qw( Kwiki::User );
+use base 'Kwiki::User';
                    
-sub name { $ENV{REMOTE_USER} }
-sub id { $ENV{REMOTE_USER} }
+const name => $ENV{REMOTE_USER};
+const id => $ENV{REMOTE_USER};
     
-sub new() {
-    my $class = shift;
-    my $self = bless {}, $class;
-    $self->hub(shift);
-    return $self;
-}
-
-package Kwiki::Users::Remote;
-1;
 __DATA__
 
 =head1 NAME 
@@ -74,7 +55,7 @@ L<Kwiki>, L<Kwiki::UserName::Remote>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2004 by Ian Langworth
+Copyright (C) 2004, 2005 by Ian Langworth
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
