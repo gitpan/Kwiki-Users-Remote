@@ -1,4 +1,9 @@
 ---
+version: 0.03
+date:    Wed Sep  7 20:32:34 EDT 2005
+changes:
+- Added patch from Gerald Richter
+---
 version: 0.02
 date:    Wed Apr 27 14:19:00 PDT 2005
 changes:

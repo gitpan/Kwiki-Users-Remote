@@ -1,17 +1,28 @@
 package Kwiki::Users::Remote;
 use Kwiki::Users -Base;
 
-our $VERSION = "0.02";
+our $VERSION = "0.03";
 
 const class_title => 'Kwiki users from HTTP authentication';
-const user_class => 'Kwiki::User::Remote';
+const user_class  => 'Kwiki::User::Remote';
 
 package Kwiki::User::Remote;
 use base 'Kwiki::User';
-                   
-const name => $ENV{REMOTE_USER};
-const id => $ENV{REMOTE_USER};
-    
+
+sub name
+{
+    exists $ENV{REMOTE_USER}
+        ? $ENV{REMOTE_USER}
+        : $self->hub->config->user_default_name;
+}
+
+sub id
+{
+    exists $ENV{REMOTE_USER}
+        ? $ENV{REMOTE_USER}
+        : $self->hub->config->user_default_name;
+}
+
 __DATA__
 
 =head1 NAME 
@@ -44,6 +55,11 @@ set the user's name from the username they logged in with. This name will
 appear in any Recent Changes listing.
 
 You might also want to use L<Kwiki::UserName::Remote>.
+
+=head1 ACKNOWLEDGEMENTS
+
+Gerald Richter submitted a patch so that username changes would be recognized
+under mod_perl
 
 =head1 AUTHORS
 

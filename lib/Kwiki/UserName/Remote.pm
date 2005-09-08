@@ -2,7 +2,7 @@ package Kwiki::UserName::Remote;
 use Kwiki::UserName -Base;
 use mixin 'Kwiki::Installer';
 
-our $VERSION = "0.02";
+our $VERSION = "0.03";
 
 const class_title => 'Kwiki user name from HTTP authentication';
 
