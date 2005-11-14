@@ -1,14 +1,17 @@
 package Kwiki::UserName::Remote;
+use strict;
+use warnings;
+
 use Kwiki::UserName -Base;
 use mixin 'Kwiki::Installer';
 
-our $VERSION = "0.03";
+our $VERSION = "0.04";
 
 const class_title => 'Kwiki user name from HTTP authentication';
 
 sub register {
     my $registry = shift;
-    $registry->add(preload => 'user_name');
+    $registry->add( preload => 'user_name' );
 }
 
 __DATA__
